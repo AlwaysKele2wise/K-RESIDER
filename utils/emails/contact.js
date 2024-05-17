@@ -1,4 +1,4 @@
-//const { config } = require("dotenv");
+// const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
 
 exports.welcomeUser = async (email, first_name) => {

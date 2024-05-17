@@ -9,7 +9,6 @@ require("./operations/routes")(app)
 
 
 
-
 app.listen(PORT, () => {
     console.log("Resider app listening on port:" + PORT)
 })
