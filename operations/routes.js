@@ -3,7 +3,8 @@
 
 
     module.exports = (app) =>{
-        // set cors
+        // set cors 
+        // console.log("my line is working")
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header(
@@ -24,7 +25,8 @@
 
     const version = "/api/v1";
 
-    app.use('${version}/contacts', contactsRouter);
+    
+    app.use(`${version}/contacts`, contactsRouter);
     // app.use('${version}/auths', contactsRouter);
 
     app.get("/", (req, res, next) => {
