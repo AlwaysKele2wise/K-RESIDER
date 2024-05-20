@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contactModel = require("../models/contacts")
-const {welcomeUser} = require("../utils/emails/contact")
+const {welcomeUser} = require("../utils/emails/contacts")
 
 
 router.post('/msg', async (req, res) => {
