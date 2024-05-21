@@ -1,7 +1,7 @@
 // const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
 
-exports.welcomeUser =  async (email, first_name) => {
+exports.contactUsMsg =  async (email, first_name) => {
     try {
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -25,6 +25,7 @@ exports.welcomeUser =  async (email, first_name) => {
                 <b>
                 <p>Best Regards</p> <br />
                  <p>RESIDER Team</p>
+                 <p>Kele2wise</p>
                 </b>
                 `,
             });
