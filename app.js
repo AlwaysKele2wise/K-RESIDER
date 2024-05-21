@@ -16,7 +16,7 @@ mongoose.set('strictQuery', false);
 
 mongoose
   .connect(db)
-  .then(() => console.log("kele2wiseDevDB connected successfully...."));
+  .then(() => console.log("Info: kele2wiseDevDB connected successfully...."));
 
 
 
