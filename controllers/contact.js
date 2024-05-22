@@ -1,8 +1,9 @@
 
 const contactModel = require("../models/contacts");
 
-const {contactUsMsg} = require("../utils/emails/contacts");
-const StatusCodes = require("..utils/statusCodes");
+const {contactUsMsg} = require("../utils/contacts");
+const StatusCodes = require("../utils/statuscodes");
+
 
 const contact = async (req, res) => {
 

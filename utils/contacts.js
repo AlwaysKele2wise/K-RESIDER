@@ -1,7 +1,5 @@
-// const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
-const { PASSMAILER, USER, SERVICE } = require("../../config/envConfig");
-
+const { PASSMAILER, USER, SERVICE } = require("../config/envConfig");
 exports.contactUsMsg =  async (email, first_name) => {
     try {
         const transporter = nodemailer.createTransport({
