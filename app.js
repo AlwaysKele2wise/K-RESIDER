@@ -1,22 +1,19 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 require("dotenv").config();
 const { notFound, errorHandler } = require("./middlewares/handlers");
 
+const { PORT } = require("./config/envConfig");
+
+
 const app = express()
-const PORT = process.env.PORT || 4000
+//const PORT = process.env.PORT || 4000
 
 require("./operations/routes")(app)
-//require("./operations/db")(app)
+require("./operations/db")(app)
 
-const db = process.env.db;
+//const db = process.env.db;
 
-
-mongoose.set('strictQuery', false);
-
-mongoose
-  .connect(db)
-  .then(() => console.log("Info: kele2wiseDevDB connected successfully...."));
 
 
 

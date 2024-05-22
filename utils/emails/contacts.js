@@ -1,18 +1,19 @@
 // const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
+const { PASSMAILER, USER, SERVICE } = require("../../config/envConfig");
 
 exports.contactUsMsg =  async (email, first_name) => {
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            service: SERVICE,
             secure: true,
             auth: {
-                pass: "dpgnmwbwtpdiigsv",
-                user: "farmsagora@gmail.com",
+                pass: PASSMAILER,
+                user: USER,
             },
         });
             await transporter.sendMail({
-                from: "farmsagora@gmail.com",
+                from: USER,
                 to: email,
                 subject: "Thanks For Contacting",
                 html: `<b>Hi You are highly welcome Aaron</b> <br /> 

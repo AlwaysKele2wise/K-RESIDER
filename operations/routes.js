@@ -1,6 +1,7 @@
     const express = require("express")
     const contactsRouter = require("../routes/contacts")
-
+    const usersRouter = require("../routes/users");
+    const { VERSION } = require("../config/envConfig");
 
     module.exports = (app) =>{
         // set cors 
@@ -27,6 +28,7 @@
 
     
     app.use(`${version}/contacts`, contactsRouter);
+    app.use(`${version}/users`, contactsRouter);
     // app.use('${version}/auths', contactsRouter);
 
     app.get("/", (req, res, next) => {
