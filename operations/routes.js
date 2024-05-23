@@ -23,12 +23,12 @@
 
     app.use(express.urlencoded({ extended: true}));
     app.use(express.json({ limit: '100mb'}));
-
+  
     const version = "/api/v1";
 
     
     app.use(`${version}/contacts`, contactsRouter);
-    app.use(`${version}/users`, contactsRouter);
+    app.use(`${version}/users`, usersRouter);
     // app.use('${version}/auths', contactsRouter);
 
     app.get("/", (req, res, next) => {

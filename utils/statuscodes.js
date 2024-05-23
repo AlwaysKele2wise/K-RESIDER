@@ -7,7 +7,6 @@ const StatusCodes = {
     MOVED_PERMANENTLY: 301,
     TEMPORARY_REDIRECT:307,
     PERMANENT_REDIRECT: 308,
-    NOT_MODIFIED: 304,
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
     PAYMENT_REQYUIRED: 402,
@@ -36,8 +35,6 @@ const StatusCodes = {
     BAD_GATEWAY: 502,
     SERVICE_UNAVAILABLE: 503,
     GATEWAY_TIMEOUT: 504,
+};
 
-
-}
-
-Module.exports = StatusCodes;
+module.exports = StatusCodes;
