@@ -1,5 +1,4 @@
 const express = require("express");
-// const mongoose = require("mongoose");
 require("dotenv").config();
 const { notFound, errorHandler } = require("./middlewares/handlers");
 
@@ -11,9 +10,6 @@ const app = express()
 
 require("./operations/routes")(app)
 require("./operations/db")(app)
-
-//const db = process.env.db;
-
 
 
 

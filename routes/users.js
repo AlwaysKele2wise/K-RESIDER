@@ -9,7 +9,7 @@ const usersController = require("../controllers/users");
 
 router.post("/otp", otpValidation, usersController.getOTP);
 router.post("/otp/resend", otpValidation, usersController.resendOTP);
-router.put("/validate/otp", otpValidation, usersController.validateOTP);
+router.put("/otp/validate", otpValidation, usersController.validateOTP);
 
 
 

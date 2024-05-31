@@ -32,8 +32,6 @@ const getOTP = async (req, res, next) => {
 };
 
 
-
-
 const resendOTP = async (req, res) => {
     const { email } = req.body;
 
@@ -55,18 +53,18 @@ const resendOTP = async (req, res) => {
 
 
         await signUpOtp(email, OTP);
-    return {
-      STATUS_CODE: StatusCode.OK,
-      STATUS: true,
-      MESSAGE: "Enter OTP sent to your email address",
-    };
+    return res.status(StatusCodes.OK).json({
+        status: true,
+        message: "OTP resent successfully",
+    });
 };
 
 
 
 const validateOTP = async (req, res) => {
    const { email, code } = req.body
-    const otp = await otpModel.findOne({code: code})
+ 
+   const otp = await otpModel.findOne({code: code})
 
     if(otp == null) {
       return res.status(StatusCodes.BAD_REQUEST).json({
@@ -75,19 +73,19 @@ const validateOTP = async (req, res) => {
       });
     }
 
-    if (otp.email != email) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
-            status: false,
-            msg: "Invalid Credential",
-        });   
-    }
+//     // if (otp.email != email) {
+//     //     return res.status(StatusCodes.BAD_REQUEST).json({
+//     //         status: false,
+//     //         msg: "Invalid Credential",
+//     //     });   
+//     // }
 
-  await otpModel.deleteOne({code: code})
+//   await otpModel.deleteOne({code: code})
 
-  return res.status(StatusCodes.OK).json({
-    status: false,
-    msg: "Otp successfully validated",
-});   
+//   return res.status(StatusCodes.OK).json({
+//     status: false,
+//     msg: "Otp successfully validated",
+// });   
 
 }
 
@@ -98,7 +96,7 @@ const signUp = async (req, res, next) => {
        if (userExist) {
         return res.status(StatusCodes.BAD_REQUEST).json({
             status: false,
-            message: "user already exists",
+            message: "user already exist",
         });
 }
  
@@ -149,7 +147,7 @@ const signIn = async (req, res, next) => {
 
 
   //Jwt token sent
-const token = await generateToken(userExist);
+  const token = await generateToken(userExist);
 
     return res.status(StatusCodes.CREATED).json({
         status: true,

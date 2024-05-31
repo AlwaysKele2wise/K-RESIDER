@@ -1,5 +1,7 @@
-const nodemailer = require("nodemailer");
+ const nodemailer = require("nodemailer");
 const { PASSMAILER, USER, SERVICE } = require("../config/envConfig");
+
+
 exports.contactUsMsg =  async (email, first_name) => {
     try {
         const transporter = nodemailer.createTransport({
