@@ -5,8 +5,6 @@ const { formatResult } = require("../utils/formatResult");
 
 
 
-
-
 exports.authValidation = (req, res, next) => {
  const schema = Joi.object({
     email: Joi.string().email().required(),

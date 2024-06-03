@@ -8,13 +8,13 @@ const notFound = (req, res, next) => {
 
 
 const errorHandler = (error, req, res, next) => {
-    const statuscode = res.statusCode === 200 ? 500 : res.statusCode;
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     const message = 'Internal Server Error';
     console.log({ Error: error.message})
 
     res.status(statuscode).json({
         status: 'error',
-        message: error.message
+        message: message
     });
 };
 

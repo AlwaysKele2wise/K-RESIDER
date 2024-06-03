@@ -31,4 +31,4 @@ await contactUsMsg(email)
 } 
 
 
-module.exports = {contact}
+module.exports = {contact} 

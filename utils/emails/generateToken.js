@@ -3,11 +3,6 @@ const jwt = require("jsonwebtoken");
 
 const otpGenerator = require("otp-generator");
 
-
-
-
-
-
 exports.generateToken = async (user) => {
     const token = jwt.sign(
         {
