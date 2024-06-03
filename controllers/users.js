@@ -1,7 +1,5 @@
 const userModel = require("../models/contacts");
 const otpModel = require("../models/otp");
- 
-
 const { userSignUpMsg, signUpOtp } = require("../utils/contacts");
 const StatusCodes = require("../utils/statuscodes");
 const { generateToken, generateOTP } = require("../utils/emails/generateToken");
@@ -58,7 +56,6 @@ const resendOTP = async (req, res) => {
         message: "OTP resent successfully",
     });
 };
-
 
 
 const validateOTP = async (req, res) => {

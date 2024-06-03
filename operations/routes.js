@@ -1,6 +1,6 @@
     const express = require("express")
     const contactsRouter = require("../routes/contacts")
-    const { usersRouter } = require("../routes/users");
+    const usersRouter = require("../routes/users");
     const {VERSION} = require("../config/envConfig");
 
     module.exports = (app) =>{

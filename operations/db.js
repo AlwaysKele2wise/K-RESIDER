@@ -1,8 +1,23 @@
 const winston = require("winston");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const { MONGODB_URI } = require("../config/envConfig");
+const MONGODB_URI  = require("../config/envConfig");
 const db = MONGODB_URI
+
+
+mongoose.set('strictQuery', false);
+
+
+module.exports = function() {
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => winston.info(`kele2wiseDevDB connected successfully....`));
+}
+
+
+
+
+
+
 
 
 // const { createLogger, transports, format } = require ("winston");
@@ -18,13 +33,4 @@ const db = MONGODB_URI
 
 // // logger.info("Application started");
 // // logger.debug("Debug message");
-
-mongoose.set('strictQuery', false);
-
-
-
-module.exports = function() {
-mongoose.connect(db)
-  .then(() => winston.info(`kele2wiseDevDB connected successfully....`));
-}
 
