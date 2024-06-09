@@ -1,8 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 const { notFound, errorHandler } = require("./middlewares/handlers");
-
 const { PORT } = require("./config/envConfig");
+
 
 
 const app = express()
@@ -10,6 +10,7 @@ const app = express()
 
 require("./operations/routes")(app)
 require("./operations/db")(app)
+
 
 
 
