@@ -26,7 +26,7 @@ const validateOptions = {
 
  const result = formatResult(schema.validate(req.body, validateOptions));
  if (result.error)
-    return res.status(StatusCodes.BAD_REQUEST).json({
+    return res.status(STATUSCODE.BAD_REQUEST).json({
         error: {
             msg: result.message,
         },

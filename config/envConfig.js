@@ -1,7 +1,5 @@
 require("dotenv").config();
 
-
-
 const PORT = process.env.PORT || 4000
 const VERSION = process.env.VERSION
 const PASSMAILER = process.env.PASSMAILER
@@ -18,4 +16,6 @@ module.exports = {
     PASSMAILER,
     USERS,
     SERVICE,
+    JWT_SECRET,
+    MONGODB_URI,
 }
