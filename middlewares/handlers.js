@@ -12,7 +12,7 @@ const errorHandler = (error, req, res, next) => {
     const message = 'Internal Server Error';
     console.log({ Error: error.message})
 
-    res.status(statuscode).json({
+    res.status(statusCode).json({
         status: 'error',
         message: message
     });
@@ -21,9 +21,9 @@ const errorHandler = (error, req, res, next) => {
 const asyncHandler = (handler) => {
     return async (req, res, next) => {
         try {
-            await handler(req, res);
-        } catch (err) {
-            next(err);
+            await handler(req, res, next);
+        } catch (error) {
+            next(error);
         }
     }
 };

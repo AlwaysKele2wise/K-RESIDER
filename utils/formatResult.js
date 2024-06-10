@@ -1,3 +1,4 @@
+
 function formatResult(validationResult) {
     if (validationResult.error) {
         // Handle validation errors

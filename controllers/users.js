@@ -1,7 +1,7 @@
 const userModel = require("../models/contacts");
 const otpModel = require("../models/otp");
 const { userSignUpMsg, signUpOtp } = require("../utils/contacts");
-const StatusCodes = require("../utils/statuscodes");
+const StatusCode = require("../utils/statuscodes");
 const { generateToken, generateOTP } = require("../utils/emails/generateToken");
 const bcrypt = require("bcrypt");
 //const SendmailTransport = require("nodemailer/lib/sendmail-transport");
@@ -18,12 +18,12 @@ const getOTP = async (req, res, next) => {
         otp: OTP,
         type: "Signup",
         created_at: new Date(),
-        otpExpiresAt: Date.now + 5 * 60 * 1000, // 5minutes
+        otpExpiresAt: Date.now () + 12 * 60 * 1000, // 12minutes
     });
     
     await signUpOtp(email, OTP);
 
-    return res.status(StatusCodes.CREATED).json({
+    return res.status(StatusCode.CREATED).json({
         status: true,
         message: "OTP sent successfully",
     });
@@ -33,7 +33,7 @@ const getOTP = async (req, res, next) => {
 const resendOTP = async (req, res) => {
     const { email } = req.body;
 
-    const otpExist = await otpModel.findOneByEmail({email});
+    const otpExist = await otpModel.findOne({email: email});
 
     
     
@@ -46,12 +46,12 @@ const resendOTP = async (req, res) => {
             otp: OTP,
             type: "Signup",
             created_at: new Date(),
-            otpExpiresAt: Date.now + 5 * 60 * 1000, // 5minutes
+            otpExpiresAt: Date.now() + 12 * 60 * 1000, // 12minutes
         });
 
 
         await signUpOtp(email, OTP);
-    return res.status(StatusCodes.OK).json({
+    return res.status(StatusCode.OK).json({
         status: true,
         message: "OTP resent successfully",
     });
@@ -59,32 +59,54 @@ const resendOTP = async (req, res) => {
 
 
 const validateOTP = async (req, res) => {
-   const { email, code } = req.body
+   const { email, code } = req.body;
  
-   const otp = await otpModel.findOne({code: code})
+   try {
+    //Find the OTP record
+const otp = await otpModel.findOne({ code });
 
-    if(otp == null) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        status: false,
-        msg: "Invalid OTP",
-      });
-    }
+if (otp == null) {
+   return res.status(StatusCode.BAD_REQUEST).json({
+       status: false,
+       msg: "Invalid OTP or expired. Please request a new one.",
+   });
+};
 
-//     // if (otp.email != email) {
-//     //     return res.status(StatusCodes.BAD_REQUEST).json({
-//     //         status: false,
-//     //         msg: "Invalid Credential",
-//     //     });   
-//     // }
+// // if (otp.code != code) {
+// //    return res.status(StatusCode.BAD_REQUEST).json({
+// //        status: false,
+// //        msg: "Invalid OTP. Please check the code you entered.",
+// //    });
+// };
 
-//   await otpModel.deleteOne({code: code})
 
-//   return res.status(StatusCodes.OK).json({
-//     status: false,
-//     msg: "Otp successfully validated",
-// });   
+if(otp.email != email) {
+   return res.status(StatusCode.BAD_REQUEST).json({
+       status: false,
+       msg: "OTP does not match the provided email address.",
+   });
+}
+
+
+    // Delete the OTP record after successful validation
+    await otpModel.deleteOne({code:code});
+
+   return res.status(StatusCode.OK).json({
+   status: true,
+   msg: "OTP successfully validated",
+});
+
+} catch (error) {
+console.error("Error validating OTP:", error);
+return res.status(StatusCode.INTERNAL_SERVER_ERROR).json({
+   status: false,
+   msg: "An error occurred while validating the OTP.",
+});
 
 }
+
+};
+
 
 const signUp = async (req, res, next) => {  
     const { email, password } = req.body;
@@ -117,6 +139,7 @@ const signUp = async (req, res, next) => {
         data: saveUser,
     });
 };
+
 
 const signIn = async (req, res, next) => {
     const { email, password, name } = req.body;

@@ -7,11 +7,11 @@ exports.signUpOtp =  async (email, OTP) => {
     console.log(email, PASSMAILER);
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            service: SERVICE,
             secure: true,
             auth: {
                 pass: PASSMAILER,
-                user: "farmsagora@gmail.com",
+                user: USER,
             },
         });
             await transporter.sendMail({
