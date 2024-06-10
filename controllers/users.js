@@ -15,7 +15,7 @@ const getOTP = async (req, res, next) => {
 
     await otpModel.create({
         email: email,
-        otp: OTP,
+        code: OTP,
         type: "Signup",
         created_at: new Date(),
         otpExpiresAt: Date.now () + 12 * 60 * 1000, // 12minutes
@@ -43,7 +43,7 @@ const resendOTP = async (req, res) => {
 
         await otpModel.create({
             email: email,
-            otp: OTP,
+            code: OTP,
             type: "Signup",
             created_at: new Date(),
             otpExpiresAt: Date.now() + 12 * 60 * 1000, // 12minutes
